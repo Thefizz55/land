@@ -1,0 +1,627 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Alder Family Dental — New Patient Special</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;0,9..144,700;1,9..144,500&family=Inter:wght@400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --porcelain:#FAF7F1;
+    --porcelain-dim:#F1ECE2;
+    --ink:#1F2B25;
+    --ink-soft:#4A5A51;
+    --pine:#2F6F5E;
+    --pine-deep:#1E4A3D;
+    --coral:#E8A87C;
+    --coral-deep:#D98F5C;
+    --line:#DED5C4;
+    --white:#FFFFFF;
+    --radius:18px;
+    --mint:#DCEFE7;
+    --sky:#EAF3F5;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--porcelain);
+    color:var(--ink);
+    font-family:'Inter', sans-serif;
+    line-height:1.5;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{
+    font-family:'Fraunces', serif;
+    color:var(--ink);
+    line-height:1.05;
+    font-weight:600;
+  }
+  .eyebrow{
+    font-family:'Space Mono', monospace;
+    text-transform:uppercase;
+    letter-spacing:0.12em;
+    font-size:0.72rem;
+    color:var(--pine-deep);
+    font-weight:700;
+  }
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+  .wrap{max-width:1140px; margin:0 auto; padding:0 24px;}
+  section{padding:88px 0;}
+  @media(max-width:720px){ section{padding:56px 0;} }
+
+  /* NAV */
+  header.site{
+    position:sticky; top:0; z-index:50;
+    background:rgba(250,247,241,0.92);
+    backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav{
+    display:flex; align-items:center; justify-content:space-between;
+    padding:16px 24px; max-width:1140px; margin:0 auto;
+  }
+  .brand{
+    display:flex; align-items:center; gap:10px;
+    font-family:'Fraunces', serif; font-weight:600; font-size:1.15rem;
+  }
+  .brand svg{width:28px; height:28px;}
+  .nav-cta{
+    background:var(--pine); color:var(--white);
+    padding:10px 20px; border-radius:999px;
+    font-weight:600; font-size:0.92rem;
+    text-decoration:none;
+    transition:background .2s ease;
+  }
+  .nav-cta:hover{background:var(--pine-deep);}
+  .nav-phone{
+    display:none;
+    font-family:'Space Mono', monospace; font-size:0.9rem;
+    margin-right:20px; color:var(--ink-soft); text-decoration:none;
+  }
+  @media(min-width:640px){ .nav-phone{display:inline;} }
+
+  /* HERO */
+  .hero{
+    padding:64px 0 40px;
+    position:relative;
+    overflow:hidden;
+    background:
+      radial-gradient(ellipse 60% 50% at 85% 0%, var(--mint) 0%, transparent 70%),
+      radial-gradient(ellipse 40% 40% at 0% 20%, var(--sky) 0%, transparent 70%);
+  }
+  .hero-grid{
+    display:grid; grid-template-columns:1.1fr 0.9fr; gap:56px; align-items:center;
+  }
+  @media(max-width:860px){ .hero-grid{grid-template-columns:1fr;} }
+  .badge{
+    display:inline-flex; align-items:center; gap:8px;
+    background:var(--pine); color:var(--white);
+    padding:7px 14px; border-radius:999px;
+    font-family:'Space Mono', monospace; font-size:0.75rem;
+    letter-spacing:0.04em; margin-bottom:22px;
+  }
+  .badge::before{content:"●"; color:var(--coral); font-size:0.6rem;}
+  h1.hero-head{
+    font-size:clamp(2.3rem, 4.6vw, 3.6rem);
+    letter-spacing:-0.01em;
+    margin-bottom:20px;
+  }
+  h1.hero-head em{
+    font-style:italic; color:var(--pine);
+  }
+  .hero p.lede{
+    font-size:1.1rem; color:var(--ink-soft); max-width:46ch; margin-bottom:32px;
+  }
+  .hero-actions{display:flex; flex-wrap:wrap; gap:14px; align-items:center;}
+  .btn-primary{
+    background:var(--coral); color:var(--ink);
+    padding:16px 28px; border-radius:999px;
+    font-weight:700; font-size:1rem; text-decoration:none;
+    border:none; cursor:pointer;
+    box-shadow:0 8px 20px -8px rgba(217,143,92,0.6);
+    transition:transform .15s ease, box-shadow .15s ease;
+  }
+  .btn-primary:hover{transform:translateY(-2px); box-shadow:0 12px 26px -8px rgba(217,143,92,0.7);}
+  .btn-ghost{
+    display:inline-flex; align-items:center; gap:8px;
+    color:var(--ink); text-decoration:none; font-weight:600;
+    padding:16px 8px; border-bottom:1px solid var(--ink);
+  }
+  .trust-row{
+    display:flex; gap:26px; margin-top:36px; flex-wrap:wrap;
+  }
+  .trust-item{font-size:0.85rem; color:var(--ink-soft); display:flex; align-items:center; gap:8px;}
+  .trust-item svg{width:18px; height:18px; color:var(--pine); flex-shrink:0;}
+
+  /* SIGNATURE: appointment card */
+  .card-stage{
+    position:relative; display:flex; justify-content:center;
+  }
+  .appt-card{
+    background:var(--white);
+    width:100%; max-width:340px;
+    border-radius:14px;
+    box-shadow:0 30px 60px -24px rgba(31,43,37,0.35);
+    padding:28px 26px 24px;
+    position:relative;
+    transform:rotate(-2.5deg);
+  }
+  .appt-card::before{
+    content:"";
+    position:absolute; left:0; top:0; bottom:0;
+    width:26px;
+    background-image:radial-gradient(circle at 0 8px, transparent 5px, var(--porcelain) 5.5px);
+    background-size:26px 16px;
+    background-repeat:repeat-y;
+    border-right:1px dashed var(--line);
+  }
+  .appt-card .content{margin-left:22px;}
+  .appt-tooth{width:34px; height:34px; color:var(--pine); margin-bottom:10px;}
+  .appt-card h3{font-size:1.15rem; margin-bottom:4px;}
+  .appt-card .sub{font-size:0.8rem; color:var(--ink-soft); margin-bottom:18px;}
+  .appt-row{
+    display:flex; justify-content:space-between;
+    font-family:'Space Mono', monospace; font-size:0.78rem;
+    padding:9px 0; border-top:1px dashed var(--line);
+    color:var(--ink-soft);
+  }
+  .appt-row span:last-child{color:var(--ink); font-weight:700;}
+  .appt-stub{
+    margin-top:18px; margin-left:22px;
+    background:var(--pine); color:var(--white);
+    text-align:center; padding:12px; border-radius:8px;
+    font-weight:700; font-size:0.9rem;
+  }
+  .float-tag{
+    position:absolute; top:-14px; right:18px;
+    background:var(--coral); color:var(--ink);
+    font-family:'Space Mono', monospace; font-weight:700;
+    font-size:0.75rem; padding:8px 12px; border-radius:8px;
+    transform:rotate(4deg);
+    box-shadow:0 8px 16px -6px rgba(0,0,0,0.25);
+  }
+
+  /* TRUST STRIP */
+  .strip{
+    background:var(--pine-deep); color:var(--porcelain);
+    padding:22px 0;
+  }
+  .strip .wrap{
+    display:flex; flex-wrap:wrap; gap:28px; justify-content:space-between; align-items:center;
+    font-family:'Space Mono', monospace; font-size:0.78rem; letter-spacing:0.03em;
+  }
+
+  /* PHOTO SECTION */
+  .photo-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:56px; align-items:center;
+  }
+  @media(max-width:860px){ .photo-grid{grid-template-columns:1fr; gap:28px;} }
+  .photo-frame{
+    aspect-ratio:4/3;
+    border-radius:var(--radius);
+    background:linear-gradient(135deg, var(--mint), var(--sky));
+    border:1px solid var(--line);
+    display:flex; align-items:center; justify-content:center;
+    flex-direction:column; gap:12px;
+    color:var(--pine-deep);
+    text-align:center; padding:24px;
+    position:relative;
+    overflow:hidden;
+  }
+  .photo-frame svg{width:44px; height:44px;}
+  .photo-frame .hint{
+    font-family:'Space Mono', monospace; font-size:0.72rem;
+    color:var(--ink-soft); max-width:26ch;
+  }
+  /* If you replace this div with an <img>, the frame styling (radius, border)
+     will still apply as long as the img has class="photo-frame" and
+     object-fit: cover; is added. */
+
+  /* OFFER SECTION */
+  .offer{
+    background:var(--porcelain-dim);
+    border-top:1px solid var(--line); border-bottom:1px solid var(--line);
+  }
+  .offer-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:60px; align-items:center;
+  }
+  @media(max-width:860px){ .offer-grid{grid-template-columns:1fr; gap:32px;} }
+  .offer-box{
+    background:var(--white); border-radius:var(--radius);
+    padding:36px; border:1px solid var(--line);
+  }
+  .offer-price{
+    font-family:'Fraunces', serif; font-size:3.2rem; color:var(--pine);
+    display:flex; align-items:baseline; gap:10px;
+  }
+  .offer-price .was{
+    font-size:1.3rem; color:var(--ink-soft); text-decoration:line-through;
+    font-family:'Inter', sans-serif;
+  }
+  .offer-list{list-style:none; margin-top:22px; display:flex; flex-direction:column; gap:12px;}
+  .offer-list li{display:flex; gap:10px; font-size:0.96rem;}
+  .offer-list svg{width:20px; height:20px; color:var(--pine); flex-shrink:0; margin-top:2px;}
+  .offer-note{font-size:0.78rem; color:var(--ink-soft); margin-top:20px;}
+
+  /* SERVICES */
+  .services-grid{
+    display:grid; grid-template-columns:repeat(3, 1fr); gap:24px; margin-top:44px;
+  }
+  @media(max-width:860px){ .services-grid{grid-template-columns:1fr 1fr;} }
+  @media(max-width:560px){ .services-grid{grid-template-columns:1fr;} }
+  .service-card{
+    background:var(--white); border:1px solid var(--line); border-radius:var(--radius);
+    padding:28px; transition:transform .18s ease, box-shadow .18s ease;
+  }
+  .service-card:hover{transform:translateY(-4px); box-shadow:0 20px 30px -18px rgba(31,43,37,0.25);}
+  .service-icon{
+    width:56px; height:56px; border-radius:50%;
+    background:var(--mint);
+    display:flex; align-items:center; justify-content:center;
+    margin-bottom:16px;
+  }
+  .service-card svg{width:28px; height:28px; color:var(--pine);}
+  .service-card h3{font-size:1.15rem; margin-bottom:8px;}
+  .service-card p{font-size:0.9rem; color:var(--ink-soft);}
+
+  /* TESTIMONIALS */
+  .testi-grid{
+    display:grid; grid-template-columns:repeat(3,1fr); gap:24px; margin-top:44px;
+  }
+  @media(max-width:860px){ .testi-grid{grid-template-columns:1fr;} }
+  .testi-card{
+    background:var(--white); border-radius:var(--radius); padding:26px;
+    border:1px solid var(--line);
+  }
+  .stars{color:var(--coral-deep); letter-spacing:2px; margin-bottom:12px; font-size:0.95rem;}
+  .testi-card p{font-size:0.92rem; color:var(--ink); margin-bottom:14px;}
+  .testi-name{font-family:'Space Mono', monospace; font-size:0.75rem; color:var(--ink-soft);}
+
+  /* FAQ */
+  .faq-item{
+    border-top:1px solid var(--line); padding:22px 0;
+  }
+  .faq-item:last-child{border-bottom:1px solid var(--line);}
+  .faq-item summary{
+    cursor:pointer; font-family:'Fraunces', serif; font-size:1.1rem; font-weight:500;
+    list-style:none; display:flex; justify-content:space-between; align-items:center;
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{content:"+"; font-size:1.4rem; color:var(--pine); transition:transform .2s ease;}
+  .faq-item[open] summary::after{transform:rotate(45deg);}
+  .faq-item p{margin-top:12px; color:var(--ink-soft); font-size:0.94rem; max-width:65ch;}
+
+  /* FINAL CTA / BOOKING */
+  .book{
+    background:var(--pine-deep); color:var(--porcelain);
+    border-radius:28px; margin:0 24px; padding:64px 40px;
+    text-align:center;
+    max-width:1092px; margin-left:auto; margin-right:auto;
+  }
+  .book h2{color:var(--white); font-size:clamp(1.8rem,3.4vw,2.6rem); margin-bottom:14px;}
+  .book p{color:#CFE0D8; max-width:52ch; margin:0 auto 32px;}
+  .ghl-slot{
+    background:rgba(255,255,255,0.06);
+    border:1px dashed rgba(255,255,255,0.35);
+    border-radius:16px; padding:40px 20px;
+    max-width:520px; margin:0 auto 28px;
+    font-family:'Space Mono', monospace; font-size:0.8rem; color:#CFE0D8;
+  }
+  .book-actions{display:flex; gap:16px; justify-content:center; flex-wrap:wrap;}
+  .btn-light{
+    background:var(--coral); color:var(--ink);
+    padding:16px 30px; border-radius:999px; font-weight:700;
+    text-decoration:none;
+  }
+  .btn-outline{
+    border:1px solid rgba(255,255,255,0.5); color:var(--white);
+    padding:16px 30px; border-radius:999px; font-weight:600;
+    text-decoration:none;
+  }
+
+  /* FOOTER */
+  footer.site{
+    background:var(--ink); color:#C9D2CC;
+    padding:56px 0 28px;
+  }
+  .footer-grid{
+    display:grid; grid-template-columns:1.4fr 1fr 1fr; gap:40px;
+  }
+  @media(max-width:720px){ .footer-grid{grid-template-columns:1fr; gap:32px;} }
+  footer .brand{color:var(--white);}
+  footer h4{
+    font-family:'Space Mono', monospace; font-size:0.75rem; text-transform:uppercase;
+    letter-spacing:0.08em; color:#8FA69B; margin-bottom:14px;
+  }
+  footer ul{list-style:none; display:flex; flex-direction:column; gap:9px; font-size:0.9rem;}
+  footer a{text-decoration:none; color:#C9D2CC;}
+  footer a:hover{color:var(--white);}
+  .footer-map{
+    width:100%; height:190px; border:0; border-radius:12px;
+    margin-top:14px; filter:grayscale(0.2) contrast(1.05);
+  }
+  .footer-bottom{
+    border-top:1px solid rgba(255,255,255,0.1);
+    margin-top:44px; padding-top:22px;
+    display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px;
+    font-size:0.78rem; color:#8FA69B;
+  }
+
+  .sr-only{position:absolute; width:1px; height:1px; overflow:hidden; clip:rect(0,0,0,0);}
+  @media (prefers-reduced-motion: reduce){
+    *{transition:none !important;}
+  }
+
+  /* MOBILE REFINEMENTS */
+  @media(max-width:600px){
+    .nav{padding:14px 18px;}
+    .brand{font-size:1rem;}
+    .brand svg{width:24px; height:24px;}
+    .nav-cta{padding:9px 16px; font-size:0.85rem;}
+    .hero{padding:36px 0 24px;}
+    .appt-card{transform:rotate(0deg); max-width:100%;}
+    .float-tag{right:8px; top:-12px;}
+    .hero-actions{flex-direction:column; align-items:stretch;}
+    .hero-actions .btn-primary, .hero-actions .btn-ghost{
+      text-align:center; justify-content:center; width:100%;
+    }
+    .trust-row{flex-direction:column; gap:12px;}
+    .strip .wrap{flex-direction:column; align-items:flex-start; gap:10px;}
+    .book{margin:0 14px; padding:44px 22px; border-radius:20px;}
+    .book-actions{flex-direction:column;}
+    .book-actions .btn-outline, .book-actions .btn-light{width:100%; text-align:center;}
+    .offer-box{padding:26px;}
+    .photo-frame{aspect-ratio:16/10;}
+  }
+</style>
+</head>
+<body>
+
+<header class="site">
+  <nav class="nav">
+    <div class="brand">
+      <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C9 2 7 4 6 6c-1.2 2.4-1 5-.5 8 .4 2.6 1 6 2 6.8.8.6 1.5-.4 1.8-2.2.3-1.7.5-3.6 1.7-3.6s1.4 1.9 1.7 3.6c.3 1.8 1 2.8 1.8 2.2 1-.8 1.6-4.2 2-6.8.5-3 .7-5.6-.5-8C17 4 15 2 12 2z" stroke="#2F6F5E" stroke-width="1.4"/></svg>
+      Alder Family Dental
+    </div>
+    <div style="display:flex; align-items:center;">
+      <a class="nav-phone" href="tel:+15551234567">(555) 123-4567</a>
+      <a class="nav-cta" href="#book">Book Now</a>
+    </div>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <span class="badge">New Patient Special · This Month</span>
+      <h1 class="hero-head">A healthy smile shouldn't wait for <em>someday</em>.</h1>
+      <p class="lede">Exam, cleaning, and full X-rays for new patients — gentle care, same-week appointments, and a team that actually explains what's going on in your mouth.</p>
+      <div class="hero-actions">
+        <a href="#book" class="btn-primary">Claim the New Patient Offer</a>
+        <a href="tel:+15551234567" class="btn-ghost">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3 19.5 19.5 0 0 1-6-6 19.8 19.8 0 0 1-3-8.7A2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 2 .7 3a2 2 0 0 1-.5 2.1L8 10a16 16 0 0 0 6 6l1.2-1.3a2 2 0 0 1 2.1-.5c1 .3 2 .5 3 .7a2 2 0 0 1 1.7 2z" stroke="currentColor" stroke-width="1.6"/></svg>
+          Call (555) 123-4567
+        </a>
+      </div>
+      <div class="trust-row">
+        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2"/></svg> Most PPO insurance accepted</div>
+        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2"/></svg> Same-week appointments</div>
+        <div class="trust-item"><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2"/></svg> 4.9★ from 300+ patients</div>
+      </div>
+    </div>
+
+    <div class="card-stage">
+      <div class="float-tag">Save $161</div>
+      <div class="appt-card">
+        <div class="content">
+          <svg class="appt-tooth" viewBox="0 0 24 24" fill="none"><path d="M12 2C9 2 7 4 6 6c-1.2 2.4-1 5-.5 8 .4 2.6 1 6 2 6.8.8.6 1.5-.4 1.8-2.2.3-1.7.5-3.6 1.7-3.6s1.4 1.9 1.7 3.6c.3 1.8 1 2.8 1.8 2.2 1-.8 1.6-4.2 2-6.8.5-3 .7-5.6-.5-8C17 4 15 2 12 2z" stroke="currentColor" stroke-width="1.4"/></svg>
+          <h3>Appointment Reminder</h3>
+          <div class="sub">New Patient Visit · Alder Family Dental</div>
+          <div class="appt-row"><span>Includes</span><span>Exam + Cleaning + X-rays</span></div>
+          <div class="appt-row"><span>Regular price</span><span>$260</span></div>
+          <div class="appt-row"><span>Your price</span><span>$99</span></div>
+        </div>
+        <div class="appt-stub">Tap to pick your time →</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="strip">
+  <div class="wrap">
+    <span>★★★★★ 4.9 AVG RATING</span>
+    <span>300+ NEW PATIENTS THIS YEAR</span>
+    <span>PPO INSURANCE WELCOME</span>
+    <span>SAME-WEEK BOOKING</span>
+  </div>
+</div>
+
+<section id="clinic-photo">
+  <div class="wrap photo-grid">
+    <div class="photo-frame">
+      <svg viewBox="0 0 24 24" fill="none"><rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.4"/><circle cx="8.5" cy="10" r="1.5" fill="currentColor"/><path d="M3 16l5-4 4 3 3-2 6 4" stroke="currentColor" stroke-width="1.4"/></svg>
+      <strong style="font-family:'Fraunces',serif; font-size:1.05rem;">Your clinic photo goes here</strong>
+      <span class="hint">Swap this div for a real photo of your office, chair, or team — replace the &lt;div class="photo-frame"&gt; with an &lt;img src="your-photo.jpg" class="photo-frame"&gt; and add object-fit:cover.</span>
+    </div>
+    <div>
+      <span class="eyebrow">Welcome In</span>
+      <h2 style="font-size:2rem; margin:10px 0 16px;">A calm, modern office — not a waiting room you dread.</h2>
+      <p style="color:var(--ink-soft); max-width:48ch;">Bright rooms, friendly faces, and a team that takes the time to explain things clearly. Come see for yourself when you book your first visit.</p>
+    </div>
+  </div>
+</section>
+
+<section class="offer" id="offer">
+  <div class="wrap offer-grid">
+    <div>
+      <span class="eyebrow">The Offer</span>
+      <h2 style="font-size:2rem; margin:10px 0 16px;">Everything a new patient needs to start on the right foot.</h2>
+      <p style="color:var(--ink-soft); max-width:50ch;">No pressure, no surprise bills. We'll walk you through what we find, what it costs, and what (if anything) needs attention — before we do anything else.</p>
+    </div>
+    <div class="offer-box">
+      <div class="offer-price"><span class="was">$260</span> $99</div>
+      <ul class="offer-list">
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2"/></svg> Comprehensive exam</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2"/></svg> Full set of digital X-rays</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2"/></svg> Professional cleaning</li>
+        <li><svg viewBox="0 0 24 24" fill="none"><path d="M20 6L9 17l-5-5" stroke="currentColor" stroke-width="2"/></svg> Personalized care plan</li>
+      </ul>
+      <a href="#book" class="btn-primary" style="display:block; text-align:center; margin-top:26px;">Book This Offer</a>
+      <p class="offer-note">Offer valid for new patients without dental insurance. Cannot be combined with other offers. Limited appointments per week.</p>
+    </div>
+  </div>
+</section>
+
+<section id="services">
+  <div class="wrap">
+    <span class="eyebrow">Care, Beyond The Cleaning</span>
+    <h2 style="font-size:2rem; margin-top:10px;">Whatever brought you here, we've got it covered.</h2>
+    <div class="services-grid">
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 2C9 2 7 4 6 6c-1.2 2.4-1 5-.5 8 .4 2.6 1 6 2 6.8.8.6 1.5-.4 1.8-2.2.3-1.7.5-3.6 1.7-3.6s1.4 1.9 1.7 3.6c.3 1.8 1 2.8 1.8 2.2 1-.8 1.6-4.2 2-6.8.5-3 .7-5.6-.5-8C17 4 15 2 12 2z" stroke="currentColor" stroke-width="1.4"/></svg></div>
+        <h3>General & Preventive</h3>
+        <p>Cleanings, exams, and fillings to keep small issues from becoming big ones.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none"><circle cx="12" cy="12" r="9" stroke="currentColor" stroke-width="1.4"/><path d="M9 12l2 2 4-4" stroke="currentColor" stroke-width="1.4"/></svg></div>
+        <h3>Cosmetic Dentistry</h3>
+        <p>Whitening, veneers, and bonding for a smile you actually want to show off.</p>
+      </div>
+      <div class="service-card">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none"><path d="M12 3l8 4v5c0 5-3.4 8.4-8 9-4.6-.6-8-4-8-9V7l8-4z" stroke="currentColor" stroke-width="1.4"/></svg></div>
+        <h3>Emergency & Same-Day</h3>
+        <p>Toothache, chip, or something worse — call and we'll get you seen fast.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section style="background:var(--porcelain-dim); border-top:1px solid var(--line); border-bottom:1px solid var(--line);">
+  <div class="wrap">
+    <span class="eyebrow">From Our Patients</span>
+    <h2 style="font-size:2rem; margin-top:10px;">People who put off going, and were glad they finally did.</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>I hadn't been to a dentist in years. No judgment, no lecture — just a clear plan and a team that made it easy.</p>
+        <div class="testi-name">— MARIA T., NEW PATIENT</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>Got in the same week for a toothache. Fixed, explained, and out the door in under an hour.</p>
+        <div class="testi-name">— DAVID R., EMERGENCY VISIT</div>
+      </div>
+      <div class="testi-card">
+        <div class="stars">★★★★★</div>
+        <p>The new patient special is legit — no upsell, no surprise charges. Booked my cleaning on the spot.</p>
+        <div class="testi-name">— PRIYA K., NEW PATIENT</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="faq">
+  <div class="wrap" style="max-width:760px;">
+    <span class="eyebrow">Before You Book</span>
+    <h2 style="font-size:2rem; margin:10px 0 8px;">A few things people usually ask.</h2>
+    <div style="margin-top:24px;">
+      <details class="faq-item" open>
+        <summary>Do I need dental insurance to use the new patient offer?</summary>
+        <p>No — the $99 offer is designed for patients without insurance. If you do have PPO insurance, we're happy to bill it directly and this offer usually still comes out ahead.</p>
+      </details>
+      <details class="faq-item">
+        <summary>What if I need more than a cleaning?</summary>
+        <p>We'll walk you through exactly what we find and what it costs before doing any additional work. No surprise treatment, ever.</p>
+      </details>
+      <details class="faq-item">
+        <summary>How fast can I get an appointment?</summary>
+        <p>Most new patients are seen within the same week. Pick a time on the booking calendar below and you'll get an instant confirmation.</p>
+      </details>
+      <details class="faq-item">
+        <summary>I'm nervous about the dentist. Can you help with that?</summary>
+        <p>Absolutely — tell us when you book, and we'll adjust the pace, explain every step, and make sure you're comfortable throughout.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section id="book">
+  <div class="book">
+    <span class="eyebrow" style="color:#9FD6C1;">Last Step</span>
+    <h2>Pick a time that works for you.</h2>
+    <p>Choose your appointment below — takes less than a minute, and you'll get a text confirmation right away.</p>
+
+    <div class="ghl-slot" style="padding:0; border:none; background:transparent; max-width:560px;">
+      <iframe
+          src="https://api.leadconnectorhq.com/widget/form/IsrZDJfP6UmgZ8B7IA1f"
+          style="width:100%;height:501px;border:none;border-radius:12px"
+          id="inline-IsrZDJfP6UmgZ8B7IA1f"
+          data-layout="{'id':'INLINE'}"
+          data-trigger-type="alwaysShow"
+          data-trigger-value=""
+          data-activation-type="alwaysActivated"
+          data-activation-value=""
+          data-deactivation-type="neverDeactivate"
+          data-deactivation-value=""
+          data-form-name="Landing page dental clinic test"
+          data-height="501"
+          data-layout-iframe-id="inline-IsrZDJfP6UmgZ8B7IA1f"
+          data-form-id="IsrZDJfP6UmgZ8B7IA1f"
+          title="Landing page dental clinic test"
+      >
+      </iframe>
+    </div>
+    <script src="https://link.msgsndr.com/js/form_embed.js"></script>
+
+    <div class="book-actions">
+      <a href="tel:+15551234567" class="btn-outline">Or call (555) 123-4567</a>
+    </div>
+  </div>
+</section>
+
+<footer class="site">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="brand" style="margin-bottom:14px;">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C9 2 7 4 6 6c-1.2 2.4-1 5-.5 8 .4 2.6 1 6 2 6.8.8.6 1.5-.4 1.8-2.2.3-1.7.5-3.6 1.7-3.6s1.4 1.9 1.7 3.6c.3 1.8 1 2.8 1.8 2.2 1-.8 1.6-4.2 2-6.8.5-3 .7-5.6-.5-8C17 4 15 2 12 2z" stroke="#C9D2CC" stroke-width="1.4"/></svg>
+          Alder Family Dental
+        </div>
+        <p style="max-width:32ch; font-size:0.9rem;">Modern, judgment-free dental care for the whole family. New patients welcome.</p>
+      </div>
+      <div>
+        <h4>Visit</h4>
+        <ul>
+          <li>123 Main Street, Suite 4</li>
+          <li>Your City, ST 00000</li>
+          <li><a href="tel:+15551234567">(555) 123-4567</a></li>
+        </ul>
+        <iframe
+          class="footer-map"
+          loading="lazy"
+          referrerpolicy="no-referrer-when-downgrade"
+          src="https://www.google.com/maps?q=123+Main+Street,+Your+City,+ST+00000&output=embed"
+          title="Clinic location map">
+        </iframe>
+      </div>
+      <div>
+        <h4>Hours</h4>
+        <ul>
+          <li>Mon–Thu: 8am – 5pm</li>
+          <li>Fri: 8am – 2pm</li>
+          <li>Sat–Sun: Closed</li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2026 Alder Family Dental. All rights reserved.</span>
+      <span>Privacy Policy · Terms</span>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
